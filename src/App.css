@@ -1,0 +1,57 @@
+.App {
+  text-align: center;
+}
+
+.Sun {
+  font-size: 82px;
+  pointer-events: none;
+  margin: 90px;
+}
+
+.Moon {
+  margin: 15px;
+  font-size: 14px;
+}
+
+.System {
+  margin-left: 1vw;
+  margin-top: 1vh;
+}
+
+h1 {
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Earth {
+    animation: App-logo-spin infinite 10s linear;
+  }
+  .System {
+    animation: App-logo-spin infinite 60s linear;
+
+  }
+}
+
+.App-header {
+  background-color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
