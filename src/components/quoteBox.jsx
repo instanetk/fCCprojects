@@ -53,7 +53,9 @@ let quotes = [
     {quote: 'He who enters into his own must grope through what lies at hand, he must sense his way from stone to stone. He must embrace the worthless and worthy with the same love.',
     author: 'Carl Jung'},
     {quote: 'Si el honor y la sabiduría y la felicidad no son para mí, que sean para otros. Que el cielo exista, aunque mi lugar sea el infierno. Que yo sea ultrajado y aniquilado, pero que en un instante, en un ser, Tu enorme Biblioteca se justifique.',
-    author: 'Jorge Luis Borges'}
+    author: 'Jorge Luis Borges'},
+    {quote: 'My thoughts are not my self, but exactly like the things of the world, alive and dead. Just as I am not damaged through living in a partly chaotic world, so too I am not damaged if I live in my partly chaotic thought world.',
+    author: 'Carl Jung'}
 ]
 
 let random = (max) => {
