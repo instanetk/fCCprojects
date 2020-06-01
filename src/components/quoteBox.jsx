@@ -51,7 +51,9 @@ let quotes = [
     {quote: 'The way nature has blended you into the compound whole does not prevent you drawing a boundary around yourself and keeping what is in your own control. Always remember this: remember too that the happy life depends on very little. And do not think, just because you have given up hope of becoming a philosopher or a scientist, you should therefore despair of a free spirit, integrity, social conscience, obedience to god. It is wholly possible to become a ‘divine man’ without anybody’s recognition.',
     author: 'Marcus Aurelius'},
     {quote: 'He who enters into his own must grope through what lies at hand, he must sense his way from stone to stone. He must embrace the worthless and worthy with the same love.',
-    author: 'Carl Jung'}
+    author: 'Carl Jung'},
+    {quote: 'Si el honor y la sabiduría y la felicidad no son para mí, que sean para otros. Que el cielo exista, aunque mi lugar sea el infierno. Que yo sea ultrajado y aniquilado, pero que en un instante, en un ser, Tu enorme Biblioteca se justifique.',
+    author: 'Jorge Luis Borges'}
 ]
 
 let random = (max) => {
