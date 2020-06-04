@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
+import Home from './pages/Home';
 import QuoteGen from './pages/Quotes';
 import Sol from './pages/Sol';
 import MarkdownPreviwer from './pages/Markdown';
@@ -20,6 +21,7 @@ function App() {
         </div>
       <header className="App-header">
         <Switch>
+          <Route path="/" component={Home} exact/>
           <Route path="/cert/quote" component={QuoteGen} />
           <Route path="/cert/sol" component={Sol} /> 
           <Route path="/cert/markdown" component={MarkdownPreviwer} /> 

@@ -50,6 +50,12 @@ nav a, a:visited {
    background-color: fuchsia;
  }
 
+ /* HOME PAGE */
+
+#home {
+  font-size: 2vw;
+}
+
 /* QUOTE GENERATOR COMPONENT */
 
 #quote-box {
