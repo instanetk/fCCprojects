@@ -1,20 +1,32 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import './App.css';
-import QuoteBox from './components/quoteBox';
-import SolCount from './components/solCount';
+import NavBar from './components/NavBar';
+import QuoteGen from './pages/Quotes';
+import Sol from './pages/Sol';
+import MarkdownPreviwer from './pages/Markdown';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <div className="System">
-        <span className="Sun" role="img" aria-label="Sun emoji">☀️</span>
-        <span className="Earth" role="img" aria-label="Earth emoji">🌎<span className="Moon" role="img" aria-label="Moon emoji">🌘</span></span>
+      <Router>
+        <div id="navbar">
+        <NavBar />
         </div>
-        <SolCount />
-        <QuoteBox />
-      </header>
+      <header className="App-header">
+        <Switch>
+          <Route path="/cert/quote" component={QuoteGen} />
+          <Route path="/cert/sol" component={Sol} /> 
+          <Route path="/cert/markdown" component={MarkdownPreviwer} /> 
+        </Switch>
+     
+      </header> 
+      </Router>
     </div>
   );
 }

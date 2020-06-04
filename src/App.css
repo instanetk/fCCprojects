@@ -1,6 +1,101 @@
 .App {
   text-align: center;
+  background-color: #000000;
 }
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  /* border: 5px solid hotpink; */
+
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* NAVBAR COMPONENT */
+
+#navbar {
+  display:inline-flex;
+  /* border: 5px solid greenyellow; */
+}
+
+nav {
+  /* border: 5px solid yellow; */
+  z-index: 5;
+}
+
+nav ul {
+  list-style-type: none;
+}
+nav li {
+  display: inline-block;
+}
+nav a, a:visited {
+  background-color: hotpink;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 5px;
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+ nav li a:hover {
+   background-color: fuchsia;
+ }
+
+/* QUOTE GENERATOR COMPONENT */
+
+#quote-box {
+  width: 50vw;
+}
+
+.quote {
+  font-size: 18px;
+  text-align: justify;
+  animation: 2s fade-in;
+}
+
+.author {
+  text-align: right;
+}
+
+.newQuote {
+  font-size: 24px;
+}
+
+#tweet-quote {
+  background-color: rgb(0, 225, 255);
+  border-radius: 05px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 8px 8px 8px 8px;
+  margin: 0px 0 0 10px;
+  text-decoration: none;
+}
+
+.number{
+  display: flex;
+  font-size: 14px;
+  text-align: center;
+}
+
+@keyframes fade-in {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* SOL COMPONENT */
 
 .Sun {
   font-size: 82px;
@@ -16,11 +111,9 @@
 .System {
   margin-left: 1vw;
   margin-top: 1vh;
+  z-index: -10;
 }
 
-h1 {
-  z-index: 1;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .Earth {
@@ -32,21 +125,6 @@ h1 {
   }
 }
 
-.App-header {
-  background-color: #000000;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -55,3 +133,37 @@ h1 {
     transform: rotate(360deg);
   }
 }
+
+/* MARKDOWN COMPONENT */
+
+#markdown {
+  display: flex;
+  /* justify-content: space-between; */
+  /* width: 90vw;
+  height: 100vh; */
+  border: 5px solid hotpink;
+}
+
+#editor {
+  width: 100%;
+}
+#preview {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-left:30px;
+  height: 100%;
+  width: 100%;
+  background-color: azure;
+  color: black;
+}
+#preview img {
+  width: 5%;
+  height: auto;
+}
+
+code {
+  background-color: #333333;
+  color: greenyellow;
+}
+
