@@ -21,7 +21,7 @@ function App() {
         </div>
       <header className="App-header">
         <Switch>
-          <Route path="/" component={Home} exact/>
+          <Route path="/cert" component={Home} />
           <Route path="/cert/quote" component={QuoteGen} />
           <Route path="/cert/sol" component={Sol} /> 
           <Route path="/cert/markdown" component={MarkdownPreviwer} /> 
