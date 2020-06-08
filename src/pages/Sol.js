@@ -1,5 +1,5 @@
 import React from 'react';
-import SolCount from '../components/solCount';
+import SolCount from '../components/solCount.jsx';
 
 const Sol = () => (
     <SolCount />

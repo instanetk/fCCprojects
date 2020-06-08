@@ -1,5 +1,5 @@
 import React from 'react';
-import QuoteBox from '../components/QuoteBox';
+import QuoteBox from '../components/QuoteBox.jsx';
 
 const QuoteGen = () => (
     <>
