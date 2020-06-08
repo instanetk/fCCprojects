@@ -15,13 +15,13 @@ const NavBar = () => {
           <Link to="/cert/markdown">Markdown</Link>
         </li>
         <li>
-          <Link to="/cert/drumroll">Drumroll Machine</Link>
+          <Link to="/cert/drum">Drum Machine</Link>
         </li>
         <li>
           <Link to="/cert/calc">Calculator</Link>
         </li>
         <li>
-          <Link to="/cert/podomoro">Podomoro</Link>
+          <Link to="/cert/pomodoro">Pomodoro</Link>
         </li>
         <li>
           <Link to="/cert/sol">SOL</Link>
