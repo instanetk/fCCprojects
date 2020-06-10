@@ -1,8 +1,6 @@
-import React from 'react';
-import SolCount from '../components/solCount.jsx';
+import React from "react";
+import SolCount from "../components/solCount";
 
-const Sol = () => (
-    <SolCount />
-)
+const Sol = () => <SolCount />;
 
 export default Sol;
