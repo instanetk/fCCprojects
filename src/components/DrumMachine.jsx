@@ -62,7 +62,7 @@ class DrumMachine extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pressed: "",
+      pressed: "Press these keys to play",
     };
   }
 
