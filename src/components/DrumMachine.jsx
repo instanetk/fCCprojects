@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../drumMachine.css";
+import "./common/drumMachine.css";
 
 let keyPad = [
   {
@@ -70,7 +70,7 @@ class DrumMachine extends Component {
   handleKeyPress = this.handleKeyPress.bind(this);
 
   handleClick(key) {
-      this.setState({pressed: key.id});
+    this.setState({ pressed: key.id });
     document.getElementById(key.key).play();
     console.log("Pad Clicked", key.key);
   }
@@ -142,7 +142,7 @@ class DrumMachine extends Component {
     return (
       <div id="drum-machine">
         <div id="display">
-            <p>{this.state.pressed}</p>
+          <p>{this.state.pressed}</p>
           {keyPad.map((keyPad) => (
             //You can only pass props to components
             //Use arrow functions to pass arguments to function references

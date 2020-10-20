@@ -20,19 +20,21 @@ class Calculator extends Component {
   handleNumber(number) {
     const current = [...this.state.display];
     if (current[0] === 0 && current[0] % 1 === 0) {
-      console.log("case 1");
+      console.log("handleNumber case 1");
       current.shift();
       this.setState({ display: [number] });
     } else if (current.length !== 9) {
-      console.log("case 2");
+      console.log("handleNumber case 2", typeof current);
       const update = current.concat(number).join("");
-      this.setState({ display: [parseFloat(update)] });
+      console.warn("update:", update, typeof update, parseInt(update));
+      this.setState({ display: [update] }); // fails 12
+      // this.setState({ display: [parseFloat(update)] }); // passes 12
     }
   }
 
   handleDecimal() {
     const current = [...this.state.display];
-    console.log(typeof current[0]);
+    console.log("decimal type", typeof current[0]);
     if (current[0] % 1 === 0 && typeof current[0] === "number") {
       const update = current.concat(".").join("");
       this.setState({ display: update });
@@ -72,9 +74,6 @@ class Calculator extends Component {
         return a + b;
       },
       subtract: function (a, b) {
-        // if (operand !== null) {
-
-        // }
         console.log("subtract");
         return a - b;
       },
@@ -86,17 +85,15 @@ class Calculator extends Component {
       },
     };
 
-    operation.subtract.bind(this);
-
     if (hold[0] === 0 && operand === null) {
-      console.log("case 1");
+      console.log("display case 1");
       this.setState({ display: [0], operand: op, hold: [this.current()] });
     } else if (hold[0] !== 0 && display[0] !== 0) {
-      console.log("case 2");
+      console.log("display case 2");
       const result = operation[operand](hold[0], this.current());
-      this.setState({ display: [result], operand: op, hold: [0] });
+      this.setState({ display: [result], operand: null, hold: [0] });
     } else {
-      console.log("case 3");
+      console.log("display case 3");
       this.setState({ operand: op });
     }
   }
@@ -132,10 +129,10 @@ class Calculator extends Component {
 
     const show = () => {
       if (hold === "0") {
-        // console.log(true, "display: ", display, "hold: ", hold);
+        // console.log(true, "display: ", display(), "hold: ", hold);
         return display();
-      } else if (hold !== "0" && display !== "0") {
-        // console.log(false, "display: ", display, "hold: ", hold);
+      } else if (hold !== "0" && display() !== "0") {
+        // console.log(false, "display: ", display(), "hold: ", hold);
         return display();
       } else {
         console.log("hold");

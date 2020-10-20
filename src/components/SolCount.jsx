@@ -7,7 +7,7 @@ let today = Date.now() - EST;
 let time = today - birthday[0];
 let sol = Math.round(time / (1000 * 3600 * 24)).toLocaleString();
 // let sol = new Date(time / (1000 * 3600 * 24)).toLocaleString();
-console.log(today, utc.getTimezoneOffset() * (60 * 1000), birthday[0]);
+// console.log(today, utc.getTimezoneOffset() * (60 * 1000), birthday[0]);
 class SolCount extends Component {
   render() {
     return (
