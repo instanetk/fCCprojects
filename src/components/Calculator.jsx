@@ -20,24 +20,43 @@ class Calculator extends Component {
   handleNumber(number) {
     const current = [...this.state.display];
     if (current[0] === 0 && current[0] % 1 === 0) {
-      console.log("handleNumber case 1");
+      console.log("handleNumber case 1", typeof current[0]);
       current.shift();
       this.setState({ display: [number] });
     } else if (current.length !== 9) {
-      console.log("handleNumber case 2", typeof current);
+      console.log("handleNumber case 2", typeof current[0]);
       const update = current.concat(number).join("");
-      console.warn("update:", update, typeof update, parseInt(update));
-      this.setState({ display: [update] }); // fails 12
-      // this.setState({ display: [parseFloat(update)] }); // passes 12
+      if (number === 0) {
+        this.setState({ display: [update] });
+      } else {
+        this.setState({ display: [parseFloat(update)] }); // passes 12
+      }
     }
   }
 
   handleDecimal() {
     const current = [...this.state.display];
-    console.log("decimal type", typeof current[0]);
-    if (current[0] % 1 === 0 && typeof current[0] === "number") {
+    let index;
+    console.warn(
+      "decimal type",
+      typeof current[0],
+      Array.isArray(current),
+      current[0]
+    );
+
+    // const index = current.split().indexOf(".");
+    // console.log(typeof current[0]);
+    if (typeof current[0] === "string") {
+      index = current[0].split("").indexOf(".");
+      console.error("split", index);
+    }
+
+    console.log("is int?", Number.isInteger(current[0]));
+    if (Number.isInteger(current[0]) || index === -1) {
       const update = current.concat(".").join("");
-      this.setState({ display: update });
+      console.log("update", update);
+      this.setState({ display: [update] });
+      console.log("is int?", Number.isInteger(current[0]));
     }
   }
 
@@ -87,7 +106,11 @@ class Calculator extends Component {
 
     if (hold[0] === 0 && operand === null) {
       console.log("display case 1");
-      this.setState({ display: [0], operand: op, hold: [this.current()] });
+      this.setState({
+        display: [0],
+        operand: op,
+        hold: [this.state.display[0]],
+      });
     } else if (hold[0] !== 0 && display[0] !== 0) {
       console.log("display case 2");
       const result = operation[operand](hold[0], this.current());
@@ -105,9 +128,14 @@ class Calculator extends Component {
         maximumSignificantDigits: 9,
       });
     };
-    const hold = Number(this.state.hold).toLocaleString("en-US", {
-      maximumSignificantDigits: 9,
-    });
+    const hold = () => {
+      if (typeof this.state.hold[0] === "string") return this.state.hold;
+
+      return Number(this.state.hold).toLocaleString("en-US", {
+        maximumSignificantDigits: 9,
+      });
+    };
+
     const ac =
       this.state.display[0] === 0 && this.state.hold[0] === 0 ? "AC" : "C";
 
@@ -135,8 +163,8 @@ class Calculator extends Component {
         // console.log(false, "display: ", display(), "hold: ", hold);
         return display();
       } else {
-        console.log("hold");
-        return hold;
+        console.log("show: hold");
+        return hold();
       }
     };
 
