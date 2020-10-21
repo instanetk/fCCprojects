@@ -198,7 +198,19 @@ class Calculator extends Component {
             <div id="multiply" onClick={() => this.handleOperation("multiply")}>
               <div className="button">x</div>
             </div>
-            <div id="subtract" onClick={() => this.handleOperation("subtract")}>
+            <div
+              id="subtract"
+              onClick={() => {
+                if (
+                  this.state.display[0] === 0 &&
+                  this.state.operand !== null
+                ) {
+                  this.handleSign();
+                } else {
+                  this.handleOperation("subtract");
+                }
+              }}
+            >
               <div className="button">-</div>
             </div>
             <div id="add" onClick={() => this.handleOperation("add")}>
