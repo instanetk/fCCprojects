@@ -44,8 +44,6 @@ class Calculator extends Component {
       current[0]
     );
 
-    // const index = current.split().indexOf(".");
-    // console.log(typeof current[0]);
     if (typeof current[0] === "string") {
       index = current[0].split("").indexOf(".");
       console.error("split", index);
@@ -71,7 +69,13 @@ class Calculator extends Component {
 
   handleSign() {
     const current = [...this.state.display];
-    const result = current * -1;
+    let result;
+    if (current[0] === 0) {
+      result = "-0";
+    } else {
+      result = current * -1;
+    }
+    console.log(result);
     if (!this.state.sign) {
       this.setState({ sign: true, display: [result] });
     } else {
@@ -93,7 +97,7 @@ class Calculator extends Component {
         return a + b;
       },
       subtract: function (a, b) {
-        console.log("subtract");
+        console.error("subtract");
         return a - b;
       },
       multiply: function (a, b) {
@@ -114,12 +118,13 @@ class Calculator extends Component {
     } else if (hold[0] !== 0 && display[0] !== 0) {
       console.log("display case 2");
       const result = operation[operand](hold[0], this.current());
-      this.setState({ display: [result], operand: null, hold: [0] });
+      this.setState({ display: [0], operand: op, hold: [result] });
     } else {
       console.log("display case 3");
       this.setState({ operand: op });
     }
   }
+
   render() {
     const display = () => {
       if (typeof this.state.display[0] === "string") return this.state.display;
@@ -152,8 +157,6 @@ class Calculator extends Component {
         result = "result";
     }
     // console.log(display.length, result);
-    // const test = [3, "+", 5, "*", 6, "-", 2, "/", 4];
-    // console.log(Function(test.join("").toString()));
 
     const show = () => {
       if (hold === "0") {
