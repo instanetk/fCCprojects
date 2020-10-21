@@ -69,6 +69,7 @@ class Calculator extends Component {
 
   handleSign() {
     const current = [...this.state.display];
+    const hold = [...this.state.hold];
     let result;
     if (current[0] === 0) {
       result = "-0";
@@ -89,8 +90,10 @@ class Calculator extends Component {
   }
 
   handleOperation(op) {
-    const { display, hold, operand } = this.state;
+    const { display, hold, operand, sign } = this.state;
     console.log("handleOp", display[0], hold[0], operand);
+
+    if (sign === true) this.handleSign();
 
     const operation = {
       add: function (a, b) {
@@ -109,18 +112,30 @@ class Calculator extends Component {
     };
 
     if (hold[0] === 0 && operand === null) {
-      console.log("display case 1");
+      console.log("operation case 1");
       this.setState({
         display: [0],
         operand: op,
         hold: [this.state.display[0]],
       });
-    } else if (hold[0] !== 0 && display[0] !== 0) {
-      console.log("display case 2");
+    } else if (
+      hold[0] !== 0 &&
+      display[0] !== 0 &&
+      hold[0] !== 0 &&
+      display[0] !== "-0"
+    ) {
+      console.log(
+        "operation case 2",
+        display[0],
+        typeof display[0],
+        Boolean(hold[0] !== 0 && display[0] !== 0),
+        Boolean(hold[0] !== 0 && operand !== "subtract"),
+        operand
+      );
       const result = operation[operand](hold[0], this.current());
-      this.setState({ display: [0], operand: op, hold: [result] });
+      this.setState({ display: [0], operand: op, hold: [result], sign: false });
     } else {
-      console.log("display case 3");
+      console.log("operation case 3");
       this.setState({ operand: op });
     }
   }
@@ -203,7 +218,7 @@ class Calculator extends Component {
               onClick={() => {
                 if (
                   this.state.display[0] === 0 &&
-                  this.state.operand !== null
+                  this.state.operand !== "subtract"
                 ) {
                   this.handleSign();
                 } else {
