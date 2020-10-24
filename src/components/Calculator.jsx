@@ -69,7 +69,6 @@ class Calculator extends Component {
 
   handleSign() {
     const current = [...this.state.display];
-    const hold = [...this.state.hold];
     let result;
     if (current[0] === 0) {
       result = "-0";
@@ -159,32 +158,33 @@ class Calculator extends Component {
     const ac =
       this.state.display[0] === 0 && this.state.hold[0] === 0 ? "AC" : "C";
 
-    let result;
-
-    switch (display.length) {
-      case (7, 8, 9, 10):
-        result = "result-nine";
-        break;
-      case display.length >= 11:
-        result = "result-eleven";
-        break;
-      default:
-        result = "result";
-    }
-    // console.log(display.length, result);
-
     const show = () => {
       if (hold === "0") {
-        // console.log(true, "display: ", display(), "hold: ", hold);
+        console.log(true, "display: ", display(), "hold: ", hold());
         return display();
       } else if (hold !== "0" && display() !== "0") {
-        // console.log(false, "display: ", display(), "hold: ", hold);
+        console.log(false, "display: ", display(), "hold: ", hold());
         return display();
       } else {
         console.log("show: hold");
         return hold();
       }
     };
+
+    let result;
+    let length = show().toString().split("").length;
+
+    switch (length) {
+      case 11:
+        result = "result-eleven";
+        break;
+      case 10:
+        result = "result-nine";
+        break;
+      default:
+        result = "result";
+    }
+    console.log(length, result);
 
     return (
       <div>

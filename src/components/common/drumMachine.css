@@ -1,37 +1,37 @@
 #drum-machine {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: thistle;
-    width: 400px;
-    height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: thistle;
+  width: 400px;
+  height: 400px;
 }
 
 .drum-pad {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 64px;
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-    background-color: violet;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 64px;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  background-color: purple;
 }
 
 .drum-pad:hover {
-    background-color: fuchsia;
-    box-shadow: 2px 2px 6px #333333;
+  background-color: fuchsia;
+  box-shadow: 2px 2px 6px #333333;
 }
 .drum-pad:active {
-    background-color: hotpink;
-    box-shadow: 2px 2px 3px #666666;
+  background-color: hotpink;
+  box-shadow: 2px 2px 3px #666666;
 }
 .drum-pad span {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }

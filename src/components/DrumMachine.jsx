@@ -129,14 +129,6 @@ class DrumMachine extends Component {
     // Remove event listener on compenent unmount
     window.removeEventListener("keydown", this.handleKeyPress);
   }
-  //   handleKeyPress(event) {
-  //         // document.getElementById(key.key).play();
-  //         // document.addEventListener('keydown', logKey => {
-  //         //     console.log("Key Pressed", logKey);
-  //         // })
-  //         console.log("Key Pressed", event);
-
-  //   }
 
   render() {
     return (
@@ -153,7 +145,6 @@ class DrumMachine extends Component {
               id={keyPad.key + "-pad"}
               onClick={() => this.handleClick(keyPad)}
               onKeyPress={() => this.handleKeyPress(keyPad.key)}
-              //   onClick={() => this.setState({pressed: keyPad.key}), () => this.handleKeyPress}
             >
               <span>{keyPad.key}</span>
               <audio
