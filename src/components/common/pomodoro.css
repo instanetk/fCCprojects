@@ -37,6 +37,13 @@
   margin: 2px;
 }
 
+#session-increment:hover,
+#session-decrement:hover,
+#break-increment:hover,
+#break-decrement:hover {
+  color: fuchsia;
+}
+
 #session-length,
 #break-length {
   font-size: 42px;
@@ -50,8 +57,7 @@ span {
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
 #timer {
@@ -75,4 +81,12 @@ span {
 #start_stop,
 #reset {
   padding: 15px;
+}
+
+#start_stop:hover {
+  color: greenyellow;
+}
+
+#reset:hover {
+  color: red;
 }

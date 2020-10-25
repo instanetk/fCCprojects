@@ -16,6 +16,7 @@ class Pomodoro extends Component {
     timer: 1500000,
     running: false,
     interval: null,
+    paused: false,
   };
 
   handleSessionControl(time) {
@@ -47,7 +48,7 @@ class Pomodoro extends Component {
       },
     };
     rest = control[time]();
-    if (rest >= 0) {
+    if (rest >= 1) {
       this.setState({ rest });
     }
   }
@@ -58,16 +59,20 @@ class Pomodoro extends Component {
     if (timer >= 0 && running) {
       this.setState({ timer });
     } else if (running) {
-      this.setState({ running: false });
+      this.setState({ running: false, interval: null });
       return clearInterval(interval);
     }
   }
 
   handleStart() {
-    let { session, interval } = { ...this.state };
-    let timer = session * 60 * 1000;
-    // let timer = 3000;
-    this.setState({ timer, running: true });
+    let { session, timer, interval, paused } = { ...this.state };
+
+    timer = session * 60 * 1000;
+    if (!paused) {
+      this.setState({ timer, running: true });
+    } else {
+      this.setState({ running: true, paused: false });
+    }
 
     if (timer >= 0) {
       interval = setInterval(() => {
@@ -78,12 +83,24 @@ class Pomodoro extends Component {
   }
 
   handlePause() {
+    const { interval } = this.state;
     console.log("paused");
 
-    this.setState({ running: false });
+    this.setState({ running: false, interval: null, paused: true });
+    return clearInterval(interval);
   }
   handleReset() {
-    this.setState({ rest: 5, session: 25, timer: 1500000, running: false });
+    const { interval } = this.state;
+
+    this.setState({
+      rest: 5,
+      session: 25,
+      timer: 1500000,
+      running: false,
+      interval: null,
+      paused: false,
+    });
+    return clearInterval(interval);
   }
   render() {
     const { session, rest, running, timer } = this.state;
