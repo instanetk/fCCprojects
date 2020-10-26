@@ -29,7 +29,7 @@ class Pomodoro extends Component {
   }
 
   handleSessionControl(time) {
-    let { session } = { ...this.state };
+    let { session, timer } = { ...this.state };
 
     const control = {
       up: function () {
@@ -41,7 +41,8 @@ class Pomodoro extends Component {
     };
     session = control[time]();
     if (session >= 1 && session <= 60) {
-      this.setState({ session });
+      timer = session * 60 * 1000;
+      this.setState({ session, timer });
     }
   }
 
