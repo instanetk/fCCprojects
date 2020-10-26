@@ -8,7 +8,7 @@ import {
   faPauseCircle,
   faSyncAlt,
 } from "@fortawesome/free-solid-svg-icons";
-
+import sound from "./common/a-tone.mp3";
 class Pomodoro extends Component {
   state = {
     session: 25,
@@ -17,7 +17,16 @@ class Pomodoro extends Component {
     running: false,
     interval: null,
     paused: false,
+    label: "Session",
   };
+
+  clockify() {
+    let minutes = Math.floor(this.state.timer / 1000 / 60);
+    let seconds = this.state.timer / 1000 - minutes * 60;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    return minutes + ":" + seconds;
+  }
 
   handleSessionControl(time) {
     let { session } = { ...this.state };
@@ -31,7 +40,7 @@ class Pomodoro extends Component {
       },
     };
     session = control[time]();
-    if (session >= 1) {
+    if (session >= 1 && session <= 60) {
       this.setState({ session });
     }
   }
@@ -48,13 +57,18 @@ class Pomodoro extends Component {
       },
     };
     rest = control[time]();
-    if (rest >= 1) {
+    if (rest >= 1 && rest <= 60) {
       this.setState({ rest });
     }
   }
 
+  handleClick() {
+    document.getElementById("beep").play();
+    console.log("Sound");
+  }
+
   handleRun() {
-    let { timer, running, interval } = this.state;
+    let { label, timer, running, interval } = this.state;
     timer -= 1000;
     if (timer >= 0 && running) {
       this.setState({ timer });
@@ -62,16 +76,37 @@ class Pomodoro extends Component {
       this.setState({ running: false, interval: null });
       return clearInterval(interval);
     }
+
+    if (timer === 0 && label === "Session") {
+      console.log(true);
+      document.getElementById("beep").click();
+      setTimeout(() => {
+        this.handleBreak();
+      }, 1000);
+    }
+
+    if (timer === 0 && label === "Break") {
+      console.log("break end");
+      setTimeout(() => {
+        this.setState({ running: false, interval: null });
+
+        this.handleStartPause();
+        return clearInterval(interval);
+      }, 1000);
+    }
   }
 
-  handleStart() {
-    let { session, timer, interval, paused } = { ...this.state };
+  handleBreak() {
+    let { rest, timer, paused, interval } = this.state;
 
-    timer = session * 60 * 1000;
+    timer = rest * 60 * 1000;
+    // timer = 5000;
     if (!paused) {
-      this.setState({ timer, running: true });
+      console.log("condition 1");
+      this.setState({ timer, running: true, label: "Break" });
     } else {
-      this.setState({ running: true, paused: false });
+      console.log("condition 2");
+      this.setState({ paused: false, running: true });
     }
 
     if (timer >= 0) {
@@ -82,13 +117,40 @@ class Pomodoro extends Component {
     }
   }
 
-  handlePause() {
-    const { interval } = this.state;
-    console.log("paused");
+  handleStartPause() {
+    let { session, timer, interval, running, paused, label } = {
+      ...this.state,
+    };
 
-    this.setState({ running: false, interval: null, paused: true });
-    return clearInterval(interval);
+    if (running) {
+      this.setState({ paused: true, interval: null, running: false });
+      console.log("paused");
+      return clearInterval(interval);
+    }
+
+    timer = session * 60 * 1000;
+    // timer = 3000;
+    if (!paused) {
+      this.setState({ timer, running: true, label: "Session" });
+    } else {
+      this.setState({ paused: false, running: true });
+    }
+
+    if (timer >= 0) {
+      interval = setInterval(() => {
+        this.handleRun();
+      }, 1000);
+      this.setState({ interval });
+    }
+
+    if (label === "Break" && timer === 0) {
+      console.log("restart session");
+      setTimeout(() => {
+        this.handleRun();
+      }, 1000);
+    }
   }
+
   handleReset() {
     const { interval } = this.state;
 
@@ -99,31 +161,40 @@ class Pomodoro extends Component {
       running: false,
       interval: null,
       paused: false,
+      label: "Session",
     });
+    document.getElementById("beep").pause();
+    document.getElementById("beep").currentTime = 0;
+
     return clearInterval(interval);
   }
   render() {
-    const { session, rest, running, timer } = this.state;
+    const { session, rest, running, label } = this.state;
     return (
       <div id="pomodoro">
+        <audio
+          src={sound}
+          className="clip"
+          id="beep"
+          preload="auto"
+          onClick={() => this.handleClick()}
+        />
         <div id="group">
           <div id="break-label">
             <span>Break Length</span>
           </div>
           <div className="control">
-            <div id="break-increment">
-              <FontAwesomeIcon
-                icon={faCaretUp}
-                size="2x"
-                onClick={() => this.handleBreakControl("up")}
-              />
+            <div
+              id="break-increment"
+              onClick={() => this.handleBreakControl("up")}
+            >
+              <FontAwesomeIcon icon={faCaretUp} size="2x" />
             </div>
-            <div id="break-decrement">
-              <FontAwesomeIcon
-                icon={faCaretDown}
-                size="2x"
-                onClick={() => this.handleBreakControl("down")}
-              />
+            <div
+              id="break-decrement"
+              onClick={() => this.handleBreakControl("down")}
+            >
+              <FontAwesomeIcon icon={faCaretDown} size="2x" />
             </div>
             <div id="break-length">
               <span>{rest}</span>
@@ -135,19 +206,17 @@ class Pomodoro extends Component {
             <span>Session Length</span>
           </div>
           <div className="control">
-            <div id="session-increment">
-              <FontAwesomeIcon
-                icon={faCaretUp}
-                size="2x"
-                onClick={() => this.handleSessionControl("up")}
-              />
+            <div
+              id="session-increment"
+              onClick={() => this.handleSessionControl("up")}
+            >
+              <FontAwesomeIcon icon={faCaretUp} size="2x" />
             </div>
-            <div id="session-decrement">
-              <FontAwesomeIcon
-                icon={faCaretDown}
-                size="2x"
-                onClick={() => this.handleSessionControl("down")}
-              />
+            <div
+              id="session-decrement"
+              onClick={() => this.handleSessionControl("down")}
+            >
+              <FontAwesomeIcon icon={faCaretDown} size="2x" />
             </div>
             <div id="session-length">
               <span>{session}</span>
@@ -156,45 +225,21 @@ class Pomodoro extends Component {
         </div>
         <div id="timer">
           <div id="timer-label">
-            <span>Session</span>
+            <span>{label}</span>
           </div>
-          <div id="time-left">
-            <span>
-              {(() => {
-                let remaning = new Date(timer).toISOString().slice(14, 19);
-                return remaning;
-              })()}
-            </span>
-          </div>
+          <div id="time-left">{this.clockify()}</div>
           <div className="control_circles">
-            <div id="start_stop">
+            <div id="start_stop" onClick={() => this.handleStartPause()}>
               {(() => {
-                console.log(running);
                 if (!running) {
-                  return (
-                    <FontAwesomeIcon
-                      icon={faPlayCircle}
-                      size="lg"
-                      onClick={() => this.handleStart()}
-                    />
-                  );
+                  return <FontAwesomeIcon icon={faPlayCircle} size="lg" />;
                 } else {
-                  return (
-                    <FontAwesomeIcon
-                      icon={faPauseCircle}
-                      size="lg"
-                      onClick={() => this.handlePause()}
-                    />
-                  );
+                  return <FontAwesomeIcon icon={faPauseCircle} size="lg" />;
                 }
               })()}
             </div>
-            <div id="reset">
-              <FontAwesomeIcon
-                icon={faSyncAlt}
-                size="lg"
-                onClick={() => this.handleReset()}
-              />
+            <div id="reset" onClick={() => this.handleReset()}>
+              <FontAwesomeIcon icon={faSyncAlt} size="lg" />
             </div>
           </div>
         </div>
