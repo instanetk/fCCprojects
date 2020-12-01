@@ -19,7 +19,7 @@ function App() {
         </div>
         <header className="App-header">
           <Switch>
-            <Route path="/" component={HomePage} exact />
+            <Route path="/projects/fcc/" component={HomePage} exact />
             <Route path="/projects/fcc/quote" component={QuoteGen} />
             <Route path="/projects/fcc/sol" component={Sol} />
             <Route path="/projects/fcc/markdown" component={MarkdownPreviwer} />
