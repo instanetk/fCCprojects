@@ -1,70 +1,67 @@
-import React, { Component } from "react";
-import "./common/drumMachine.css";
+import React, { Component } from 'react';
+import './common/drumMachine.css';
 
 let keyPad = [
   {
-    key: "Q",
+    key: 'Q',
     keyCode: 81,
-    id: "Heater-1",
-    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
+    id: 'Heater-1',
+    url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3',
   },
   {
-    key: "W",
+    key: 'W',
     keyCode: 87,
-    id: "Heater-2",
-    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
+    id: 'Heater-2',
+    url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3',
   },
   {
-    key: "E",
+    key: 'E',
     keyCode: 69,
-    id: "Heater-3",
-    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
+    id: 'Heater-3',
+    url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3',
   },
   {
-    key: "A",
+    key: 'A',
     keyCode: 65,
-    id: "Heater-4",
-    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3",
+    id: 'Heater-4',
+    url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3',
   },
   {
-    key: "S",
+    key: 'S',
     keyCode: 83,
-    id: "Clap",
-    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3",
+    id: 'Clap',
+    url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3',
   },
   {
-    key: "D",
+    key: 'D',
     keyCode: 68,
-    id: "Open-HH",
-    url: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3",
+    id: 'Open-HH',
+    url: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3',
   },
   {
-    key: "Z",
+    key: 'Z',
     keyCode: 90,
-    id: "Kick-n Hat",
-    url: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
+    id: 'Kick-n Hat',
+    url: 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3',
   },
   {
-    key: "X",
+    key: 'X',
     keyCode: 88,
-    id: "Kick",
-    url: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
+    id: 'Kick',
+    url: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3',
   },
   {
-    key: "C",
+    key: 'C',
     keyCode: 67,
-    id: "Closed-HH",
-    url: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
+    id: 'Closed-HH',
+    url: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3',
   },
 ];
 
 class DrumMachine extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pressed: "Press these keys to play",
-    };
-  }
+  state = {
+    pressed: 'Press these keys to play',
+  };
 
   handleClick = this.handleClick.bind(this);
   handleKeyPress = this.handleKeyPress.bind(this);
@@ -72,7 +69,7 @@ class DrumMachine extends Component {
   handleClick(key) {
     this.setState({ pressed: key.id });
     document.getElementById(key.key).play();
-    console.log("Pad Clicked", key.key);
+    console.log('Pad Clicked', key.key);
   }
 
   handleKeyPress(e) {
@@ -117,24 +114,25 @@ class DrumMachine extends Component {
       default:
     }
 
-    console.log("Key code: " + e.keyCode);
+    console.log('Key code: ' + e.keyCode);
   }
 
   componentDidMount() {
     // Add Event Listener on compenent mount
-    window.addEventListener("keydown", this.handleKeyPress);
+    window.addEventListener('keydown', this.handleKeyPress);
   }
 
   componentWillUnmount() {
     // Remove event listener on compenent unmount
-    window.removeEventListener("keydown", this.handleKeyPress);
+    window.removeEventListener('keydown', this.handleKeyPress);
   }
 
   render() {
     return (
       <div id="drum-machine">
-        <div id="display">
-          <p>{this.state.pressed}</p>
+        <h2>{this.state.pressed}</h2>
+
+        <div id="display-drum">
           {keyPad.map((keyPad) => (
             //You can only pass props to components
             //Use arrow functions to pass arguments to function references
@@ -142,17 +140,11 @@ class DrumMachine extends Component {
               className="drum-pad"
               tabIndex="0"
               key={keyPad.keyCode}
-              id={keyPad.key + "-pad"}
+              id={keyPad.key + '-pad'}
               onClick={() => this.handleClick(keyPad)}
-              onKeyPress={() => this.handleKeyPress(keyPad.key)}
-            >
+              onKeyPress={() => this.handleKeyPress(keyPad.key)}>
               <span>{keyPad.key}</span>
-              <audio
-                src={keyPad.url}
-                className="clip"
-                id={keyPad.key}
-                preload="auto"
-              />
+              <audio src={keyPad.url} className="clip" id={keyPad.key} preload="auto" />
             </div>
           ))}
         </div>
