@@ -4,7 +4,7 @@ A React app using routing to showcase six different frontend projects.
 
 # Quote Generator
 
-Selects a random quote from an array.
+Selects a random literary quote from an array.
 
 # Markdown Editor
 
