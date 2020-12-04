@@ -1,68 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## freeCodeCamp Frontend Certification Projects
 
-## Available Scripts
+A React app using routing to showcase six different frontend projects.
 
-In the project directory, you can run:
+# Quote Generator
 
-### `npm start`
+Selects a random quote from an array.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Markdown Editor
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Allows the real-time formatting of text using Markdown syntax.
 
-### `npm test`
+# Drum Machine
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Play a drumpkit pressing the following keys in your keyboard:
 
-### `npm run build`
+Q, W, E
+A, S, D
+Z, X, C
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Calculator
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Advanced project.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project is two-fold.
 
-### `npm run eject`
+On one end, it is an exact UI replica of an iPhone iOS calculator. The UI not only includes the visual elements, but also screen behavior when reaching more than 8 digits.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The logic program is all about JavaScript competence and using the state of the component to keep track of calculations to perform.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Pomodoro
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+A pomodoro is a study technique where a user sets an amount of time free of distraction for focused attention.
+The custom time is 25 minutes with a 5 minute break in between sessions.
+This pomodoro counter can be adjusted to the user's preferences in both the study session and the break time.
+At the end of a session a bell sound is played to indicate a break has begun.
+The break timer starts automatically at this time and a sound is played at the end indicating the start of a new study session.
+The clock prominently displays a second by second countdown until each event.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# SOL
 
-## Learn More
+Personal project.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This component simply keeps track of the Earth rotations since the day I was born.
+It's how many days I have been alive. Today is my day number: XX,XXX
